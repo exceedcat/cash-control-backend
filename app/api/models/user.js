@@ -16,9 +16,9 @@ const user = (sequelize, DataTypes) => {
     }
   });
 
-  Users.associate = (models) => {
-    Users.belongsToMany(models.Spending, {
-      through: 'SpendingUsers',
+  User.associate = (models) => {
+    User.belongsToMany(models.Spending, {
+      through: 'SpendingUser',
       as: 'spendings',
       foreignKey: 'userId'
     });
