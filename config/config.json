@@ -1,0 +1,12 @@
+{
+  "development": {
+    "username": "exceedcat",
+    "password": null,
+    "database": "exceedcat",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL"
+  }
+}

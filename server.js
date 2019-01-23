@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import models from './app/api/models/index';
+import models from './models/index';
+import auth from './routes/auth';
 
 const app = express();
 
@@ -16,7 +17,7 @@ app.get('/', function (req, res) {
 });
 
 // public route
-// app.use('/', auth);
+app.use('/', auth);
 
 // app.get('/favicon.ico', function (req, res) {
 //   res.sendStatus(204);
