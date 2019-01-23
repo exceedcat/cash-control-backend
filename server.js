@@ -17,9 +17,9 @@ app.get('/', function (req, res) {
 // public route
 // app.use('/', auth);
 
-app.get('/favicon.ico', function (req, res) {
-  res.sendStatus(204);
-});
+// app.get('/favicon.ico', function (req, res) {
+//   res.sendStatus(204);
+// });
 
 // express doesn't consider not found 404 as an error so we need to handle 404 explicitly
 // handle 404 error
@@ -40,7 +40,7 @@ app.use(function (err, req, res, next) {
 
 
 // models.sequelize.sync().then(() => {
-  app.listen(5000, () => {
+  app.listen(process.env.PORT || 5000, () => {
     console.log('Your Server is up and running');
   });
 // });
