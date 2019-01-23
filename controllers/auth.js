@@ -9,18 +9,20 @@ const controller = {
             .create({
                 id: uuid(),
                 email: req.body.email,
+                login: req.body.login,
                 password: bcrypt.hashSync(req.body.password, 10),
             })
             .then((user) => res.status(201).json({
-                name: user.name,
-                email: user.email
+                id: user.id,
+                email: user.email,
+                login: user.login,
             }))
             .catch((error) => res.status(400).json({ message: "Wrong email/password"}));
     },
 
 
     authenticate: (req, res) => {
-        models.user.findOne({ where: { email: req.body.email } }).then(user => {
+        models.user.findOne({ where: { login: req.body.login } }).then(user => {
             if (!user) {
                 return res.status(404).json({ message: "Invalid username/password" });
             }
@@ -29,7 +31,8 @@ const controller = {
                 return res.status(200).json({
                     user: {
                         id: user.id,
-                        email: user.email
+                        email: user.email,
+                        login: user.login,
                     },
                     token: token
                 });
