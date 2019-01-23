@@ -22,6 +22,7 @@
     "pg": "^7.8.0",
     "regenerator-runtime": "^0.13.1",
     "sequelize": "^4.42.0",
+    "sequelize-cli": "^5.4.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {

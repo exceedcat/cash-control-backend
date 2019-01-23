@@ -5,6 +5,11 @@ const user = (sequelize, DataTypes) => {
       allowNull: false,
       primaryKey: true
     },
+    login: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      unique: true
+    },
     email: {
       type: DataTypes.TEXT,
       allowNull: false,
