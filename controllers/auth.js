@@ -27,8 +27,7 @@ const controller = {
             include: [{
                 model: models.spending,
                 as: 'spendings',
-                // required: false,
-                // where: {userId: Sequelize.col('user.id')}
+                required: false
             }],
             where: { login: req.body.login }
         }).then(user => {
