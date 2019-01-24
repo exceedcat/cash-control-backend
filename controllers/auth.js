@@ -2,6 +2,7 @@ import models from '../models/index';
 import bcrypt from 'bcrypt';
 import uuid from 'uuid/v4';
 import jwt from 'jsonwebtoken';
+const Sequelize = require('sequelize');
 
 const controller = {
     create: (req, res) => {
@@ -17,12 +18,20 @@ const controller = {
                 email: user.email,
                 login: user.login,
             }))
-            .catch((error) => res.status(400).json({ message: "Wrong email/password"}));
+            .catch((error) => res.status(400).json({ message: "Wrong email/password" }));
     },
 
 
     authenticate: (req, res) => {
-        models.user.findOne({ where: { login: req.body.login } }).then(user => {
+        models.user.findOne({
+            include: [{
+                model: models.spending,
+                as: 'spendings',
+                // required: false,
+                // where: {userId: Sequelize.col('user.id')}
+            }],
+            where: { login: req.body.login }
+        }).then(user => {
             if (!user) {
                 return res.status(404).json({ message: "Invalid username/password" });
             }
@@ -34,6 +43,7 @@ const controller = {
                         email: user.email,
                         login: user.login,
                     },
+                    spendings: user.spendings,
                     token: token
                 });
             }

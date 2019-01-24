@@ -22,11 +22,7 @@ const user = (sequelize, DataTypes) => {
   });
 
   User.associate = (models) => {
-    User.belongsToMany(models.spending, {
-      through: 'SpendingUser',
-      as: 'spendings',
-      foreignKey: 'userId'
-    });
+    User.hasMany(models.spending, { as: 'spendings' })
   };
 
   return User;
