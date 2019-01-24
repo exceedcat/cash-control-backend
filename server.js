@@ -3,6 +3,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import models from './models/index';
 import auth from './routes/auth';
+import spending from './routes/spending';
 
 const app = express();
 
@@ -18,10 +19,9 @@ app.get('/', function (req, res) {
 
 // public route
 app.use('/', auth);
-
-// app.get('/favicon.ico', function (req, res) {
-//   res.sendStatus(204);
-// });
+// todo: make this route private
+// todo: create refresh tokens
+app.use('/users', spending);
 
 // express doesn't consider not found 404 as an error so we need to handle 404 explicitly
 // handle 404 error
@@ -41,7 +41,7 @@ app.use(function (err, req, res, next) {
 });
 
 
-models.sequelize.sync().then(() => {
+models.sequelize.sync({force: false}).then(() => {
   app.listen(process.env.PORT || 5000, () => {
     console.log('Your Server is up and running');
   });
