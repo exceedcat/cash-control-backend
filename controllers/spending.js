@@ -21,8 +21,7 @@ const controller = {
                             id: spending.id,
                             title: spending.title,
                             amount: spending.amount,
-                            date: spending.date,
-                            user: user.id
+                            date: spending.date
                         });
                     })
                     .catch(error => res.status(404).json({ message: "User not found" }))
@@ -40,12 +39,11 @@ const controller = {
                     amount: amount || spending.amount,
                     date: date || spending.date,
                 })
-                    .then(spending => res.status(20).json({
+                    .then(spending => res.status(200).json({
                         id: spending.id,
                         title: spending.title,
                         amount: spending.amount,
-                        date: spending.date,
-                        user: user.id
+                        date: spending.date
                     }))
                     .catch(error => res.status(400).json({ message: "Wrong data" }))
             })
